@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+- stable
+cache:
+  directories:
+  - node_modules
+script:
+- npm test
+after_success:
+- cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+deploy:
+  provider: heroku
+  api_key:
+    secure: bIyjiOcSL4Hwef/BHjGw27HTYQUdx+l1wFW9NTE5+HwWK5vgPDjHgaXFmF5WUnJgo2MIZ665Z3P5+ichNzrsl0xFe0P76GhM4VPIkCe2PC2tPZbY+oAsm8h1lfeMkY2hDGq4+aEqrSdVdaturxRdW58KhLb3I4O1COjZNRdZCSkuN7C+dvS16nOcAOZmuHcvgpDdAN2JP2DoiGClkJg71WKSV5dLqa25g4i6qjQdPgTx/pCPBYoC/g95qiU6CnI8wVJ4XENVZiRhhAdely1PvLm7VicJX1hcLhnEmE4saZeQjaVC3Xsa4wEt88Od12zgL0UGrhwXgtBbP4VEh1Ty/IeI4CP33u7AgjupoVV9FFfFqaTQtfWGRq6zVcvt6Qw5Brd945ERr8tnSxG31CvOxlGcMY9zfNvTqSXTtaC/aiR8aBWHotlYDSjJrTltGMDQ3VZeBUuAjP5sTUgawEM8ZLKxcz46+ikvB4SyIDUHf3/5Y5YwiC1tWS7XuNI3brW61LTmlHYUrabK5jxHugOXIn28uA92qDH3J9+akWDVZp4WtacwlOKBcOEd4Sch96eP5rW//33ZrbqG9wnQ4M+QHMny94Oz/zHZybk2AnPUexYDKWzaovPVR5xozMvZJhHWqvgYoBcmZMUmJDJgkgVGcU5nKLOZUfk7AwXdulbEOY0=
+  app: presentation-demo
+  on:
+    repo: alexm118/presentation-demo
