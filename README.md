@@ -89,3 +89,56 @@ script:
 after_success:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 ```
+
+  * We need to modify our test script so that it runs Jest's coverage command.
+  * Replace your scripts section of your package.json with the following
+```json
+"scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js --env=jsdom --coverage"
+  },
+```
+
+Once you commit these two changes, you should see Travis CI start a build from the merge, and once it succeeds, send the code coverage output to your coveralls account. 
+
+## Optional: Making Code Coverage More Accurate ##
+
+So you've succeeded in getting your React Application Deployed through Travis CI onto Heroku. But you're a little bummed out because you seem to have inaccurate code coverage, due to the addition of some unneeded files. Luckily Jest provides us a method for specifying files we want to ignore. 
+
+  * To ignore some files we need to add the following json, within the jest section of our package.json
+```json
+"coveragePathIgnorePatterns" : [
+     Files to Ignore...
+    ],
+```
+  * To Specifically ignore the files untested by the standard Create React App, simply add this to your jest section
+```json
+"coveragePathIgnorePatterns" : [
+      "<rootDir>/node_modules/",
+      "<rootDir>/src/registerServiceWorker.js",
+      "<rootDir>/src/index.js"
+    ],
+```
+
+## Optional: How To Add Badges From Travis CI and Coveralls ##
+
+So you've finally got some good code coverage, and you've got a clean pipeline, how do you get those pretty badges to showup in your Github README. It's actually quite easy.
+
+  * For your Build Passing badge, simply open up the Travis CI pipeline for your repository
+  * Click on the Badge next to the name of your repository towards the top of your screen
+  * Set master as the branch, and Markdown as the type, and you should see something similar to
+```
+[![Build Status](https://travis-ci.org/$TRAVIS_ACCOUNT/$GITHUB_REPO.svg?branch=master)](https://travis-ci.org/$TRAVIS_ACCOUNT/$GITHUB_REPO)
+```
+Simply paste this into your README and you will have your build status badge!
+
+  * For the Code Coverage badge, simply open up Coveralls
+  * Select the repository you want to add a badge for
+  * Click the embed tag in the top right corner of the badge box at the top of your screen
+  * Select the text inside the Markdown Box
+  * You should see something similar to the following
+```
+[![Coverage Status](https://coveralls.io/repos/github/$GITHUB_ACCOUNT/$GITHUB_REPO/badge.svg?branch=master)](https://coveralls.io/github/$GITHUB_ACCOUNT/$GITHUB_REPO?branch=master
+```
+  * Paste the text into your Github README and now you have your Code Coverage Badge!
