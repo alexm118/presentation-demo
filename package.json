@@ -51,6 +51,11 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
+    "coveragePathIgnorePatterns" : [
+      "<rootDir>/node_modules/",
+      "<rootDir>/src/registerServiceWorker.js",
+      "<rootDir>/src/index.js"
+    ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
     ],
