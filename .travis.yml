@@ -8,10 +8,3 @@ script:
 - npm test
 after_success:
 - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-deploy:
-  provider: heroku
-  api_key:
-    secure: n6eIuQCoU/+i1QGoT3AaoOrw7cVLHSS5rb7OOPF3beTuN45fVUE116dqAdSg+vq+NdQdamUqMf06Q9bVHD3B/TPyrOo8RegkN7WBIsQ+AQ3YkmLRPezl9WxwTU6P4efHfBvENGYhMMTGm2l6VZNECL7LITIuBxR8daQBxvNw/rscrvG9qGGREnQILyOMoc1Yl0UhNv8jGUV89VthgUm9VUCofTd3U7m2QTDFay7L/4p4l/l43lhEtgjskLu2rP5EetpB67/Y2WtV7Yhn6R+hu1wuAH1XU0kIQL4qh9+KirX+i8ZWiZ3ksPQio5eOyQL9eTMQJUuYMCSaehQkCb0ayQMSIMvLJs/72kphNQyhumWO41Xkm1mtjzjoWxUgyTC+p09y2L2PzmgVYyPjtA4lP7AOD95U8ogiu4/2DfgUB/JWEd0rZ75mCAnnWzntqo9LRfjEpKu6rfrQFCt1nVRbWGJpzwEoh2eICTIXeevUjiGlCjQqxXCtKBn819YQdNexmvPBBA3uTAwLIzlniH3Z6Dvyy+vw22Zw8juDAahf1nmuW7JtTN7Tr04UgZyREmBbMC0U8qnHenpOaQ/MeUy3JzcCUj5lLzjZeK5LSJtSMXImzZrNUK5s7bTfDJeANCcP3veb/vjBWCb8N7cwd1Ei8mUzRzK1hq3CNyA12A9fZvc=
-  app: presentation-demo
-  on:
-    repo: alexm118/presentation-demo
